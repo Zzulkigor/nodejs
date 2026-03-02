@@ -5,7 +5,10 @@ import connection from "../db.js"
 const router = express.Router()
 
 router.get("/", (req, res) =>{
-    res.sendFile(path.resolve("public/index.html"))
+    connection.query("SELECT * FROM books", (err, rows) =>{
+        if(err) return res.send("Ошибка", err.message)
+        res.render("index", {books: rows})
+    })
 })
 
 router.get("/about", (req, res) =>{
