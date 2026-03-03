@@ -5,11 +5,8 @@ import { error } from "console"
 
 const router = express.Router()
 
-router.get("/api/books", (req, res) =>{
-    connection.query("SELECT * FROM books", (err, rows) =>{
-        if(err) return res.json({error: err.message})
-        res.json(rows)
-    })
+router.get("/", (req, res) =>{
+    res.sendFile(path.resolve("public/index.html"))
 })
 
 router.get("/about", (req, res) =>{
