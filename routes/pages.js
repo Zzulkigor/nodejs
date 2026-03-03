@@ -8,9 +8,18 @@ const router = express.Router()
 router.post("/api/add-user", (req, res) =>{
     const {name, email} = req.body;
 
+    if(!name || !email){
+        return res.json({message: "Поля должны быть заполнены"})
+    }
+
+
+    if(name.length < 3){
+        return res.json({message: "Имя слишком короткое"})
+    }
+
     connection.query("INSERT INTO users (name, email) VALUES (?,?)",
      [name, email],
-     (err, result) =>{
+     (err) =>{
         if(err) return res.json({message: "Ошибка: " + err.message})
 
         res.json({message: "Пользователь добавлен"})
