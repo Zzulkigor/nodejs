@@ -5,8 +5,17 @@ import { error } from "console"
 
 const router = express.Router()
 
-router.get("/", (req, res) =>{
-    res.sendFile(path.resolve("public/index.html"))
+router.post("/api/add-user", (req, res) =>{
+    const {name, email} = req.body;
+
+    connection.query("INSERT INTO users (name, email) VALUES (?,?)",
+     [name, email],
+     (err, result) =>{
+        if(err) return res.json({message: "Ошибка: " + err.message})
+
+        res.json({message: "Пользователь добавлен"})
+     }
+    )
 })
 
 router.get("/about", (req, res) =>{
