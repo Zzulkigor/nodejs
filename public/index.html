@@ -19,13 +19,17 @@
         </div>
     </header>
     
-    <h1>Добавить пользователя</h1>
+    <main class="main-content">
+        <form id="userForm">
+            <input type="text" id="name" placeholder="Имя" />
+            <input type="email" id="email" placeholder="Email" />
+            <input type="number" id="age" placeholder="Возраст" />
+            <button>Добавить</button>
+        </form>
 
-    <input type="text" class="name">
-    <input type="email" class="email" placeholder="Email"> 
+        <div id="users"></div>
+    </main>
 
-    <button class="addUser">Добавить</button>
-    <div class="result"></div>
     
 
     <script src="/app.js"></script>
